@@ -17,6 +17,12 @@
 
   </body>
 
+  <!-- Flash Message per Devise intructions, but in ruby, so i can use bootstrap gem-->
+
+  <% flash.each do |name, message| %>
+    <%= content_tag(:div, message, class:"alert alert-info#{name}") %>
+  <% end %>
+
 
 <!-- Footer -->
     <footer class="small text-muted">
