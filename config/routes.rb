@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   #Rooting home page away from ruby default startup, to home
   root 'pages#home'
   get 'about' => 'pages#about'
