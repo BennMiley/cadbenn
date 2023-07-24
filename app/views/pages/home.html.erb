@@ -2,7 +2,12 @@
         <div class="container">
     <div class="jumbotron jumbotron-home">
         <div class="container">
-            <h1>Welcome to my site!</h1>
+            <% if user_signed_in? %>
+                <h1>Welcome Back</h1>
+            <% else %>
+                <h1>Welcome to my site!</h1>
+            <% end %>
+            
             <p>TLorem ipsum dolor sit amet. Et iste dolore et accusamus dicta aut minus inventore qui laborum porro est quasi molestiae. Qui vitae deleniti vel aspernatur voluptatem aut eaque veritatis qui deserunt vero ut omnis veritatis. Sed voluptatum blanditiis in debitis dolores qui repellat voluptatem et labore atque sit esse expedita id animi suscipit aut commodi doloribus. Ea quisquam deserunt non optio galisum et exercitationem veniam!</p>
             <%= link_to "Test", "https://www.linkedin.com/in/bennmiley/", class: "btn btn-primary btn-lg" %>
         </div>
