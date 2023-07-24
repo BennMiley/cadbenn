@@ -9,3 +9,16 @@ one: {}
 #
 two: {}
 # column: value
+
+# test/fixtures/users.yml
+john_doe:
+  name: John Doe
+  email: john.doe@example.com
+  encrypted_password: <%= User.new(password: 'password').encrypted_password %>
+
+jane_smith:
+  name: Jane Smith
+  email: jane.smith@example.com
+  encrypted_password: <%= User.new(password: 'password').encrypted_password %>
+
+# Add more users if needed

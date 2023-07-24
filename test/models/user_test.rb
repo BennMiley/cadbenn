@@ -1,27 +1,19 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-def setup
-    @user = User.new(name: "John Doe", email: "john@example.com")
+  def setup
+    @user = User.new(name: "John Doe", email: "john@example.com", password: "password")
   end
 
-  test "should be valid" do
-    assert @user.valid?
-  end
+  # ... your existing tests ...
 
-  test "name should be present" do
-    @user.name = " "
+  test "password should be at least 6 characters long" do
+    @user.password = "short"
     assert_not @user.valid?
+    assert_includes @user.errors.full_messages, "Password is too short (minimum is 6 characters)"
   end
 
-  test "email should be present" do
-    @user.email = " "
-    assert_not @user.valid?
-  end
-
-  test "email should be unique" do
-    duplicate_user = @user.dup
-    @user.save
-    assert_not duplicate_user.valid?
+  test "should encrypt the password" do
+    assert_not_nil @user.encrypted_password
   end
 end

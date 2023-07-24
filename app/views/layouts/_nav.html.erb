@@ -20,15 +20,15 @@
 
         <% if user_signed_in? %>
           <li class="nav-item ms-auto">
-            <a class="nav-item"> <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete, class: "nav-link" %><span class="sr-only"></span></a>
+            <a class="nav-item"> <%= link_to "Sign Out", signout_path, 'data-turbo-method': :delete, class: "nav-link" %><span class="sr-only"></span></a>
           </li>
         <% else %>
           <li class="nav-item ms-auto">
-            <a class="nav-item"> <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %><span class="sr-only"></span></a>
+            <a class="nav-item"> <%= link_to "Sign Up", signup_path, class: "nav-link" %><span class="sr-only"></span></a>
           </li>
 
           <li class="nav-item ms-auto">
-            <a class="nav-item"> <%= link_to "Sign in", new_user_session_path, class: "nav-link" %><span class="sr-only"></span></a>
+            <a class="nav-item"> <%= link_to "Sign in", signin_path, class: "nav-link" %><span class="sr-only"></span></a>
           </li>
 
         <% end %>
