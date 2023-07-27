@@ -3,8 +3,8 @@
     <div class="col-md-2">
       <div class="card card-block">
         <% if user_signed_in? %>
-          <h4 class="card-title">Your Account</h4>
-          <p class="card-text">Account infformation to be displayed here</p>
+          <h4 class="card-title"><%= @user.username %></h4>
+          <p class="card-text"><%= @user.name %></p>
           <p class="card-text"><%= link_to current_user.username, user_path(current_user.username) %></p>
         <% else %>
           <p class="card-text"><%= link_to "Sign up now!", signup_path %></p>
@@ -12,9 +12,6 @@
       </div>
     </div>
     <div class="col-md-8">
-      <% if user_signed_in? %>
-        <centre><%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-primary' %></centre>
-      <% end %>
       <ul class="list-group">
         <h1>Tweets</h1>
         <% @tweets.each do |tweet| %>
