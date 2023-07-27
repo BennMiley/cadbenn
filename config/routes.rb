@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   get 'users/:username' => 'users#show', as: 'user'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :tweets do
+    member do
+      post 'vote', to: 'votes#create'
+      delete 'unvote', to: 'votes#destroy'
+    end
+  end
+
+
+
 end

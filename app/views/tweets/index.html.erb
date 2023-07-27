@@ -21,6 +21,13 @@
           <%= link_to tweet, class: "list-group-item list-group-item-action" do %>
             <h5 class="list-group-item-heading"><%= tweet.user.username %></h5>
             <p class="list-group-item-text"><%= tweet.content %></p>
+            <p class="list-group-item-text">Likes: <%= tweet.votes_for.up.size %></p>
+            <%= form_with(url: vote_tweet_path(tweet), method: :post) do |f| %>
+              <%= f.submit 'Like', class: 'btn btn-primary btn-sm' %>
+            <% end %>
+            <%= form_with(url: unvote_tweet_path(tweet), method: :delete) do |f| %>
+              <%= f.submit 'Unlike', class: 'btn btn-primary btn-sm' %>
+            <% end %>
           <% end %>
         <% end %>
       </ul>

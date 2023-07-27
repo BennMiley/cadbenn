@@ -53,6 +53,7 @@ gem "bootsnap", require: false
 gem 'bootstrap', '~> 5.3.0.alpha3'
 gem "devise", "~> 4.9"
 gem 'activeadmin'
+gem 'acts_as_votable'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
