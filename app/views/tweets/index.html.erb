@@ -1,15 +1,29 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Tweets</h1>
-
-<div id="tweets">
-  <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
-  <% end %>
+<div class="container">
+<div class="row">
+    <div class="col-md-2">
+      <div class="card card-block">
+        <% if user_signed_in? %>
+          <h4 class="card-title">Your Account</h4>
+          <p class="card-text">Account infformation to be displayed here</p>
+          <p class="card-text"><%= current_user.email %></p>
+        <% else %>
+          <p class="card-text"><%= link_to "Sign up now!", signup_path %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <% if user_signed_in? %>
+        <centre><%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-primary' %></centre>
+      <% end %>
+      <ul class="list-group">
+        <h1>Tweets</h1>
+        <% @tweets.each do |tweet| %>
+          <%= link_to tweet, class: "list-group-item list-group-item-action" do %>
+            <h5 class="list-group-item-heading"><%= tweet.user.email %></h5>
+            <p class="list-group-item-text"><%= tweet.content %></p>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
-<% if user_signed_in? %>
-<%= link_to "New tweet", new_tweet_path %>
-<% end %>
