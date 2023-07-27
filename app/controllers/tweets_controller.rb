@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  #Locking down tweet crud functionality unless youre signed in
   before_action :authenticate_user!, except: [:index, :show]
 
   # The tweet dashboard

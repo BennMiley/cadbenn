@@ -10,5 +10,6 @@
     </p>
   <% end %>
 </div>
-
+<% if user_signed_in? %>
 <%= link_to "New tweet", new_tweet_path %>
+<% end %>
