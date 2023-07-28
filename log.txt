@@ -7,3 +7,6 @@ a new tweet was created; testin my logger take 5
 ---start---
 a tweet was destroyed; testin my logger take 5
 ---end---
+---start---
+a new tweet was created; api's are working
+---end---

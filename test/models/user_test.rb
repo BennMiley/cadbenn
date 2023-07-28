@@ -1,30 +1,29 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "should be valid" do
-    user = User.new(
-      email: "test@example.com",
-      password: "password",
-      password_confirmation: "password"
-    )
-    assert user.valid?
+  def setup
+    @user = users(:one , :two) # Replace "one" with the fixture name for a user record
   end
 
-  test "should require an email" do
-    user = User.new(password: "password", password_confirmation: "password")
-    assert_not user.valid?
-    assert_includes user.errors[:email], "can't be blank"
+  test 'user should be valid' do
+    assert @user.valid?
   end
 
-  test "should require a unique email" do
-    existing_user = users(:one) # Assuming you have fixtures set up
-    user = User.new(
-      email: existing_user.email,
-      password: "password",
-      password_confirmation: "password"
-    )
-    assert_not user.valid?
-    assert_includes user.errors[:email], "has already been taken"
+  test 'email should be present' do
+    @user.email = ' '
+    assert_not @user.valid?
+  end
+
+  test 'email should be unique' do
+    duplicate_user = @user.dup
+    duplicate_user.email = @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
+  test 'password should be present' do
+    @user.password = ' '
+    assert_not @user.valid?
   end
 
 end
