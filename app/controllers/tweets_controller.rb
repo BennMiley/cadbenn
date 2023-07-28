@@ -1,11 +1,13 @@
 class TweetsController < ApplicationController
   require 'my_logger'
+  require 'net/http'
   #Locking down tweet crud functionality unless youre signed in
   before_action :authenticate_user!, except: [:index, :show]
 
   # The tweet dashboard
   def index
     @tweets = Tweet.all
+    @advice = fetch_advice
   end
 
   # The tweets belomnging to a given person
@@ -61,4 +63,16 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:content, :image)
     end
+
+   def fetch_advice
+    uri = URI('https://api.adviceslip.com/advice')
+
+      http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+  response = http.get(uri)
+  advice_data = JSON.parse(response.body)
+  advice_data['slip']['advice']
+  end
 end
