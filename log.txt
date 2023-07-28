@@ -1,0 +1,9 @@
+---start---
+a new tweet was created;#<Tweet:0x000002600fb7b198>
+---end---
+---start---
+a new tweet was created; testin my logger take 5
+---end---
+---start---
+a tweet was destroyed; testin my logger take 5
+---end---

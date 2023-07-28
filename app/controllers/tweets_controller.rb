@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  require 'my_logger'
   #Locking down tweet crud functionality unless youre signed in
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -27,6 +28,9 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
       redirect_to @tweet, notice: 'Tweet was successfully created.'
+
+      logger = MyLogger.instance
+      logger.logInfo("a new tweet was created; #{@tweet.content}")
     else
       render :new 
     end
@@ -46,6 +50,8 @@ class TweetsController < ApplicationController
   def destroy
     @tweet = current_user.tweets.find(params[:id])
     @tweet.destroy
+    logger = MyLogger.instance
+    logger.logInfo("a tweet was destroyed; #{@tweet.content}")
     redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
   end
 
