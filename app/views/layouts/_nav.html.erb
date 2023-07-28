@@ -14,6 +14,14 @@
         <li class="nav-item active">
           <a class="nav-link" href="<%= contact_path %>">Contact Us<span class="sr-only"></span></a>
         </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= tweets_path %>">Tweets<span class="sr-only"></span></a>
+        </li>
+        <% if user_signed_in? && current_user.admin? %>
+          <li class="nav-item active">
+            <%= link_to "Admin Dashboard", admin_root_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     </div>
 
